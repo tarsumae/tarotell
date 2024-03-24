@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarotell: Discover Your Today's Fortune with Tarot Card Readings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="온라인 타로카드 점술 서비스, 타로텔입니다. 당신의 오늘 운세를 점쳐보세요.">
+    <meta name="description" content="Experience accurate and personalized tarot card readings with Tarotell. Uncover insights about love, career, and life's mysteries. Start your journey today.">
+    <meta name="keywords" content="tarot card readings, online tarot reading, love tarot, career insights, future predictions, Tarotell">
+    <meta property="og:title" content="Tarotell: Your Personal Tarot Card Reading Expert" />
+    <meta property="og:description" content="Dive into the world of tarot with Tarotell and get personalized readings that help you navigate life's ups and downs." />
+    <meta property="og:url" content="https://tarotell.pages.dev" />
+    <meta property="og:image" content="https://tarotell.pages.dev/images/tarotell_logo.png" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tarotell: Discover Your Destiny">
+    <meta name="twitter:description" content="Join Tarotell for in-depth tarot card readings and unlock the secrets of your future, love life, and career paths.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content">
+        <header>
+            <h1 class="animate__animated animate__fadeInDown">Tarotell</h1>
+            <p>온라인 타로카드 점술집, 타로텔입니다.</p>
+            <img src="./images/tarotell_logo.png" alt="Tarotell Logo" class="logo">
+        </header>
+
+        <main>
+          <section class="tarot-cards">
+            <img src="./images/00 The Fool.png" alt="The Fool" id="card-0">
+            <img src="./images/01 The Magician.png" alt="The Magician" id="card-1">
+            <img src="./images/02 The High Priestess.png" alt="The High Priestess" id="card-2">
+            <img src="./images/03 The Emperor.png" alt="The Emperor" id="card-3">
+            <img src="./images/04 The Empress.png" alt="Empress" id="card-4">
+            <img src="./images/05 The Hierophant.png" alt="The Hierophant" id="card-5">
+            <img src="./images/06 The Lovers.png" alt="The Lovers" id="card-6">
+            <img src="./images/07 The Chariot.png" alt="The Chariot" id="card-7">
+            <img src="./images/08 Justice.png" alt="Justice" id="card-8">
+            <img src="./images/09 The Hermit.png" alt="The Hermit" id="card-9">
+            <img src="./images/10 Wheel of Fortune.png" alt="Wheel of Fortune" id="card-10">
+            <img src="./images/11 Strength.png" alt="Strength" id="card-11">
+            <img src="./images/12 The Hanged Man.png" alt="The Hanged Man" id="card-12">
+            <img src="./images/13 Death.png" alt="Death" id="card-13">
+            <img src="./images/14 Temperance.png" alt="Temperance" id="card-14">
+            <img src="./images/15 The Devil.png" alt="The Devil" id="card-15">
+            <img src="./images/16 The Tower.png" alt="The Tower" id="card-16">
+            <img src="./images/17 The Star.png" alt="The Star" id="card-17">
+            <img src="./images/18 The Moon.png" alt="The Moon" id="card-18">
+            <img src="./images/19 The Sun.png" alt="The Sun" id="card-19">
+            <img src="./images/20 Judgement.png" alt="Judgement" id="card-20">
+            <img src="./images/21 The World.png" alt="The World" id="card-21">
+          </section>
+            
+            <!-- 선택한 카드가 여기에 표시됩니다 -->
+          <section class="selected-cards">
+            <p class="instruction">먼저 점술가, 타수연과 간단히 인사를 나눠보세요. 이후 3장의 카드를 클릭하면 아래 번호가 나옵니다.</p>
+            <div class="card-numbers">
+                <div class="card-number" id="card1"></div>
+                <div class="card-number" id="card2"></div>
+                <div class="card-number" id="card3"></div>
+            </div>
+            <div class="button-container">
+                <button id="confirmButton">확정</button>
+                <button id="resetButton">다시선택</button>
+            </div>
+          </section>
+
+          <section class="chat-container">
+              <div id="chatbox" class="chat-box">
+                  <!-- 채팅 메시지가 여기에 동적으로 추가됩니다 -->
+              </div>
+
+              <div class="chat-input">
+                  <input id="textInput" type="text" placeholder="메시지를 입력하세요...">
+                  <button>Send</button>
+              </div>
+              <div id="spinner" class="spinner">
+                  <i class="fas fa-spinner fa-spin"></i>
+              </div>
+          </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Tarotell made by <a href="https://tarsumy.pages.dev" target="_blank">Targetzone Suwon Maetan Branch</a>. All rights reserved.</p>
+          </footer>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // 선택한 카드 번호를 저장할 배열
+        let selectedCards = [];
+
+        // 카드 이미지 요소들을 가져옵니다.
+        const cardImages = document.querySelectorAll('.tarot-cards img');
+
+        // 각 카드 이미지에 클릭 이벤트 리스너를 추가합니다.
+        cardImages.forEach(card => {
+          card.addEventListener('click', () => {
+            selectCard(card);
+          });
+        });
+
+        // 카드 선택 함수
+        function selectCard(card) {
+          // 선택한 카드의 번호를 가져옵니다.
+          const cardNumber = parseInt(card.id.split('-')[1]);
+
+          // 이미 선택된 카드인 경우 선택 해제
+          if (selectedCards.includes(cardNumber)) {
+            selectedCards = selectedCards.filter(num => num !== cardNumber);
+            card.classList.remove('selected'); // 선택 해제 시 클래스를 제거하여 스타일 변경
+          }
+          // 선택되지 않은 카드이고, 선택한 카드의 개수가 3개 미만인 경우 선택
+          else if (selectedCards.length < 3) {
+            selectedCards.push(cardNumber);
+            card.classList.add('selected'); // 선택 시 클래스를 추가하여 스타일 변경
+          }
+
+          // 선택한 카드 번호 표시 업데이트
+          updateSelectedCardsDisplay();
+        }
+
+        // 선택한 카드 번호 표시 업데이트 함수
+        function updateSelectedCardsDisplay() {
+          const cardDisplays = [document.getElementById('card1'), document.getElementById('card2'), document.getElementById('card3')];
+
+          // 모든 카드 번호를 초기화합니다.
+          cardDisplays.forEach((display, index) => {
+            display.textContent = selectedCards[index] !== undefined ? selectedCards[index] : '';
+          });
+        }
+
+        document.getElementById('resetButton').addEventListener('click', () => {
+            // 다시선택 버튼 클릭 시 로직 구현
+            selectedCards = [];
+            updateSelectedCardsDisplay();
+            cardImages.forEach(card => card.classList.remove('selected'));
+        });
+
+        let conversationHistory = [];
+        
+        const chatBox = document.getElementById('chatbox');
+        const textInput = document.getElementById('textInput');
+        const sendButton = document.querySelector('.chat-input button');
+        const spinner = document.getElementById('spinner');
+        
+        sendButton.addEventListener('click', sendMessage);
+        textInput.addEventListener('keypress', (event) => {
+          if (event.key === 'Enter') {
+            sendMessage();
+          }
+        });
+
+        async function sendMessage() {
+          const message = textInput.value.trim();
+          if (message !== '') {
+            appendMessage('user', message);
+            conversationHistory.push({ role: 'user', content: message });
+            textInput.value = '';
+
+            spinner.style.display = 'block';
+            // https://dgmjgk3lrmojlmow4lm3ikrr4m0xhtdt.lambda-url.ap-northeast-2.on.aws/chat
+            // http://localhost:3000/chat
+            try {
+              const response = await fetch('https://dgmjgk3lrmojlmow4lm3ikrr4m0xhtdt.lambda-url.ap-northeast-2.on.aws/chat', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ conversationHistory, selectedCards: [] }),
+              });
+
+              if (!response.ok) {
+                throw new Error('Failed to get response from the server');
+              }
+
+              const data = await response.json();
+              appendMessage('assistant', data.response);
+              conversationHistory.push({ role: 'assistant', content: data.response });
+            } catch (error) {
+              console.error('Error:', error);
+              appendMessage('assistant', '죄송합니다. 서버에 문제가 발생했습니다. 나중에 다시 시도해 주세요.');
+            } finally {
+              spinner.style.display = 'none';
+            }
+          }
+        }
+
+        document.getElementById('confirmButton').addEventListener('click', async () => {
+          if (selectedCards.length === 0) {
+            alert('카드를 선택해 주세요.');
+            return;
+          }
+
+          spinner.style.display = 'block';
+
+          try {
+            const response = await fetch('https://dgmjgk3lrmojlmow4lm3ikrr4m0xhtdt.lambda-url.ap-northeast-2.on.aws/chat', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ conversationHistory, selectedCards }),
+            });
+
+            if (!response.ok) {
+              throw new Error('Failed to get response from the server');
+            }
+
+            const data = await response.json();
+            appendMessage('user', `선택한 카드: ${selectedCards.join(', ')}`);
+            conversationHistory.push({ role: 'user', content: `선택한 카드: ${selectedCards.join(', ')}` });
+            appendMessage('assistant', data.response);
+            conversationHistory.push({ role: 'assistant', content: data.response });
+
+            // 응답을 받은 후 선택한 카드 초기화 및 표시 업데이트
+            selectedCards = [];
+            updateSelectedCardsDisplay();
+            cardImages.forEach(card => card.classList.remove('selected'));
+          } catch (error) {
+            console.error('Error:', error);
+            appendMessage('assistant', '죄송합니다. 서버에 문제가 발생했습니다. 나중에 다시 시도해 주세요.');
+          } finally {
+            spinner.style.display = 'none';
+          }
+        });
+
+        function appendMessage(sender, message) {
+          const messageElement = document.createElement('div');
+          messageElement.classList.add('chat-message', sender);
+          messageElement.innerHTML = `<p>${message}</p>`;
+          chatBox.appendChild(messageElement);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        
+        // Create an introduction message from the assistant
+        const introductionMessage = `
+          안녕하세요! 저는 타로텔의 점술가 타수연입니다.
+          만나서 반갑습니다.
+        `;
+        appendMessage('assistant', introductionMessage);
+
+        const audio = new Audio('./Enchanted Reverie.mp3');
+        audio.loop = true;
+        audio.volume = 0.1; // 필요에 한 상황에 맞따라 볼륨을 조절할 수 있습니다.
+
+        // 사용자 상호작용 시 배경음악 재생
+        document.addEventListener('click', function playAudio() {
+            audio.play().catch(error => {
+                console.error('배경음악 재생 실패:', error);
+            });
+            // 이벤트 리스너 제거하여 중복 재생 방지
+            document.removeEventListener('click', playAudio);
+        });
+    </script>
+    <script src="../backend/index.js"></script>
+</body>
+</html>

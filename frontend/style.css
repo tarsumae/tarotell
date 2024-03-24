@@ -1,0 +1,273 @@
+header {
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 45px;
+    font-style: italic;
+    font-weight: 6000;
+    text-shadow: 3px 3px 5px black;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    color: #ff2525;
+}
+
+h1 + p {
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 3px 3px 5px black;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-top: 20px;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('./images/tarotell_background.png');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tarot-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    padding: 10px;
+    background-color: #ffffff10;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tarot-cards img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.selected {
+    opacity: 0.6;
+  }
+  
+.selected-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.instruction {
+    background-color: #f2f2f275; /* 박스 배경색 */
+    font-size: 16px;
+    margin: 10px 10px;
+    padding: 5px;
+    background-color: #5e635e9d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+.card-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;;
+    margin-bottom: 10px;
+}
+
+.card-number {
+    width: 50px;
+    height: 50px;
+    background-color: #ffe600d8;
+    border: 2px solid #00000000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.button-container button {
+    padding: 10px 10px;
+    font-size: 16px;
+    font-weight: bolder;
+    margin: 0 10px;
+    background-color: #4caf4f9d;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:hover {
+    background-color: #3e8e41;
+}
+
+.chat-container {
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    background-color: #ffffff10;
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.chat-box {
+    position: relative;
+    background-color: #4e309694;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    background-size: 50%;
+    background-repeat: repeat;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.9;
+}
+
+.chat-message {
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-family: 'Nanum Brush Script', cursive;
+    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    background-color: #fdda65;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+}
+
+.chat-message p {
+    margin: 0;
+    padding: 0;
+}
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    /* aligns items vertically in this case */
+    justify-content: space-between;
+    /* space out the items equally */
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #3e8e41;
+}
+
+.assistant {
+    color: blue;
+    background-color: #b2fab4;
+    align-self: flex-end;
+}
+
+.user {
+    color: black;
+    background-color: #faff88;
+    align-self: flex-start;
+}
+
+.chat-message.assistant {
+    align-self: flex-end;
+}
+
+.chat-message.user {
+    align-self: flex-start;
+}
+
+footer p {
+    /* footer 내 p 요소 글자 스타일 */
+    font-size: 15px;
+    color: white;
+
+  }
+
+/* Spinner */
+#spinner {
+    display: none;
+    /* Hidden by default */
+    font-size: 50px;
+    /* Change as needed */
+    color: #e28c8c;
+    /* Change as needed */
+    position: absolute;
+    /* Adjust as per your layout */
+    top: 50%;
+    /* Adjust as per your layout */
+    left: 50%;
+    /* Adjust as per your layout */
+}
+
+@media (max-width: 600px) {
+    .tarot-cards {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 5px;
+        padding: 5px;
+    }
+
+    .chat-container {
+        margin-top: 10px;
+        padding: 10px;
+    }
+}
